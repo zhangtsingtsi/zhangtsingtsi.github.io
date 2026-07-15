@@ -1,2 +1,2 @@
-# zhangtsingtsi.github.io
-Qingqi Zhang's homepage
+# Qingqi Zhang's homepage
+This is Qingqi Zhang's homepage. He likes AI for healthcare.
