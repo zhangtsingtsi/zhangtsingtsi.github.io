@@ -1,37 +1,143 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Qingqi Zhang</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Qingqi Zhang — Postdoctoral Researcher in AI for Healthcare and Human Motion Analysis.">
+  <title>Qingqi Zhang | Personal Homepage</title>
+  <style>
+    :root { --bg:#fff; --text:#111827; --muted:#6b7280; --border:#e5e7eb; --card:#f9fafb; --accent:#2563eb; --max:920px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif; }
+    .container { max-width:var(--max); margin:0 auto; padding:0 2%; }
+    .site-header { position:sticky; top:0; z-index:10; background:rgba(255,255,255,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
+    .header-grid { display:grid; grid-template-columns:1.2fr 1fr; align-items:center; gap:12px; padding:16px 0; }
+    .myhome a { color:var(--text); font-weight:700; text-decoration:none; }
+    .nav { display:flex; justify-content:flex-end; gap:10px 14px; }
+    .nav a { color:var(--text); text-decoration:none; padding:6px 10px; border:1px solid transparent; border-radius:10px; }
+    .nav a:hover { background:var(--card); border-color:var(--border); }
+    .nav-toggle, .nav-button { display:none; }
+    main { padding:26px 0 60px; }
+    .profile { display:flex; align-items:flex-start; gap:32px; padding:28px 0; border-bottom:1px solid var(--border); }
+    .profile-photo { width:150px; height:150px; flex:0 0 150px; display:grid; place-items:center; border:2px solid var(--border); border-radius:50%; background:linear-gradient(135deg,#dbeafe,#f3e8ff); color:#344b7d; font-size:43px; font-weight:700; letter-spacing:-.08em; }
+    .profile-info { flex:1; min-width:0; }
+    h1 { margin:0 0 6px; font-size:26px; line-height:1.2; letter-spacing:-.02em; }
+    .cn-name { color:var(--muted); font-size:20px; font-weight:400; }
+    .profile-meta { margin:0 0 3px; color:var(--muted); font-size:15px; }
+    .links { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+    .btn { display:inline-block; padding:7px 14px; color:var(--text); background:#fff; border:1px solid var(--border); border-radius:12px; box-shadow:0 1px 0 rgba(17,24,39,.06); font-size:14px; text-decoration:none; }
+    .btn:hover { background:var(--card); }
+    .section-block { padding:22px 0; border-bottom:1px solid var(--border); }
+    .section-block:last-child { border-bottom:0; }
+    .section-title { margin:0 0 12px; font-size:17px; font-weight:600; letter-spacing:-.01em; }
+    p { margin:0 0 12px; }
+    p:last-child { margin-bottom:0; }
+    .text-link, .pub-title a { color:var(--accent); text-decoration:none; }
+    .text-link:hover, .pub-title a:hover { text-decoration:underline; }
+    .interest-list { margin:0; padding:0; color:var(--text); list-style:none; }
+    .interest-list li { display:inline; }
+    .interest-list li:not(:last-child)::after { content:" · "; color:var(--muted); padding:0 4px; }
+    .news-list { max-height:204px; overflow-y:auto; margin:0; padding:0 6px 0 0; list-style:none; }
+    .news-list li { display:flex; gap:12px; align-items:baseline; padding:5px 0; line-height:1.5; }
+    .news-date { flex-shrink:0; color:var(--muted); font:13px monospace; }
+    .selected-item { padding-left:14px; border-left:3px solid var(--border); }
+    .pub-title { margin:0 0 3px; font-weight:600; }
+    .pub-meta { margin:0 0 2px; color:var(--muted); font-size:14px; }
+    .pub-venue { margin:0; font-size:14px; }
+    footer { padding-top:22px; color:var(--muted); font-size:13px; text-align:center; }
+    @media (max-width:859px) {
+      .header-grid { grid-template-columns:1fr auto; }
+      .myhome { min-width:0; }
+      .myhome a { display:block; overflow:hidden; padding:6px 0; text-overflow:ellipsis; white-space:nowrap; }
+      .nav-button { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; background:#fff; border:1px solid var(--border); border-radius:12px; cursor:pointer; }
+      .nav-icon, .nav-icon::before, .nav-icon::after { width:18px; height:2px; background:var(--text); display:block; }
+      .nav-icon { position:relative; }
+      .nav-icon::before, .nav-icon::after { content:""; position:absolute; left:0; }
+      .nav-icon::before { top:-6px; } .nav-icon::after { top:6px; }
+      .nav { grid-column:1 / -1; display:none; flex-direction:column; justify-content:initial; gap:6px; margin-top:8px; padding:10px; background:#fff; border:1px solid var(--border); border-radius:14px; }
+      .nav-toggle:checked ~ .nav { display:flex; }
+      .nav a { padding:10px; background:var(--card); border-color:var(--border); }
+    }
+    @media (max-width:599px) {
+      .profile { flex-direction:column; align-items:center; gap:20px; text-align:center; }
+      .profile-photo { width:120px; height:120px; flex-basis:120px; font-size:35px; }
+      .links { justify-content:center; }
+      .news-list li { flex-direction:column; gap:2px; }
+    }
+  </style>
 </head>
+<body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <nav class="myhome" aria-label="Home"><a href="#top">Qingqi Zhang</a></nav>
+      <input class="nav-toggle" type="checkbox" id="nav-toggle">
+      <label class="nav-button" for="nav-toggle"><span class="nav-icon" aria-hidden="true"></span><span>Menu</span></label>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#research">Research</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
 
-<body style="font-family:Arial;max-width:800px;margin:auto;padding:60px;line-height:1.8;">
+  <main id="top" class="container">
+    <section class="profile" aria-labelledby="name">
+      <!-- Replace this QZ monogram with a photo: put <img src="profile.jpg" alt="Qingqi Zhang"> here. -->
+      <div class="profile-photo" aria-label="Qingqi Zhang profile placeholder">QZ</div>
+      <div class="profile-info">
+        <h1 id="name">Qingqi Zhang <span class="cn-name">(张清祺)</span></h1>
+        <p class="profile-meta">Postdoctoral Researcher · AI for Healthcare</p>
+        <p class="profile-meta">Center of Medical AI · Hangzhou Institute of Medicine</p>
+        <p class="profile-meta">Chinese Academy of Sciences</p>
+        <p class="profile-meta">Email: <a class="text-link" href="mailto:your.email@example.com">your.email@example.com</a> <span aria-label="replace this email">(please replace)</span></p>
+        <div class="links">
+          <a class="btn" href="https://github.com/zhangtsingtsi" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a class="btn" href="#" title="Replace with your Google Scholar URL">Google Scholar</a>
+          <a class="btn" href="#" title="Replace with your CV file or URL">CV</a>
+        </div>
+      </div>
+    </section>
 
-<h1>Qingqi Zhang</h1>
+    <section class="section-block">
+      <p><strong>Short Bio:</strong> I am a postdoctoral researcher at the Center of Medical AI, Hangzhou Institute of Medicine, Chinese Academy of Sciences. My work explores reliable and interpretable artificial intelligence for healthcare, with a focus on human movement and rehabilitation. <em>Please replace this paragraph with your own biography.</em></p>
+    </section>
 
-<p>
-Postdoctoral Researcher<br>
-Center of Medical AI<br>
-Hangzhou Institute of Medicine<br>
-Chinese Academy of Sciences
-</p>
+    <section id="research" class="section-block">
+      <h2 class="section-title">Research Interests</h2>
+      <ul class="interest-list">
+        <li>AI for Healthcare</li>
+        <li>VR Rehabilitation</li>
+        <li>Human Motion Analysis</li>
+        <li>Explainable AI</li>
+      </ul>
+    </section>
 
-<h2>Research Interests</h2>
+    <section id="news" class="section-block">
+      <h2 class="section-title">What's New</h2>
+      <ul class="news-list">
+        <li><span class="news-date">2026.07</span><span>Example: Our work on motion analysis has been accepted by <em>[Conference / Journal]</em>. Please replace with your news.</span></li>
+        <li><span class="news-date">2026.03</span><span>Example: I joined the Center of Medical AI as a postdoctoral researcher.</span></li>
+        <li><span class="news-date">2025.12</span><span>Example: Our team presented research on AI-assisted rehabilitation at <em>[Event]</em>.</span></li>
+      </ul>
+    </section>
 
-<ul>
-<li>AI for Healthcare</li>
-<li>VR Rehabilitation</li>
-<li>Human Motion Analysis</li>
-<li>Explainable AI</li>
-</ul>
+    <section id="publications" class="section-block">
+      <h2 class="section-title">Selected Publications</h2>
+      <div class="selected-item">
+        <p class="pub-title"><a href="#">Example paper title: Explainable AI for Personalized Rehabilitation Assessment</a></p>
+        <p class="pub-meta"><strong>Qingqi Zhang</strong>, Co-author One, Co-author Two</p>
+        <p class="pub-venue"><em>Example Journal / Conference</em>, 2026 · <a class="text-link" href="#">Paper</a> · <a class="text-link" href="#">Code</a></p>
+      </div>
+    </section>
 
-<h2>Links</h2>
+    <section id="contact" class="section-block">
+      <h2 class="section-title">Contact</h2>
+      <p>I welcome collaborations on AI for healthcare, rehabilitation, and human motion analysis. Please email me at <a class="text-link" href="mailto:your.email@example.com">your.email@example.com</a>.</p>
+    </section>
 
-<ul>
-<li><a href="https://github.com/zhangtsingtsi.github.io">GitHub</a></li>
-<li><a href="#">Google Scholar</a></li>
-<li><a href="#">CV</a></li>
-</ul>
-
+    <footer>© 2026 Qingqi Zhang · Last updated July 2026</footer>
+  </main>
 </body>
 </html>
