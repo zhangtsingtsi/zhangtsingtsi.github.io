@@ -12,11 +12,13 @@
     body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif; }
     .container { max-width:var(--max); margin:0 auto; padding:0 2%; }
     .site-header { position:sticky; top:0; z-index:10; background:rgba(255,255,255,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
-    .header-grid { display:grid; grid-template-columns:1.2fr 1fr; align-items:center; gap:12px; padding:16px 0; }
+    .header-grid { display:grid; grid-template-columns:1.2fr auto 1fr; align-items:center; gap:12px; padding:16px 0; }
     .myhome a { color:var(--text); font-weight:700; text-decoration:none; }
     .nav { display:flex; justify-content:flex-end; gap:10px 14px; }
     .nav a { color:var(--text); text-decoration:none; padding:6px 10px; border:1px solid transparent; border-radius:10px; }
     .nav a:hover { background:var(--card); border-color:var(--border); }
+    .language-switch { padding:6px 10px; color:var(--text); background:#fff; border:1px solid var(--border); border-radius:10px; cursor:pointer; font:inherit; font-size:14px; }
+    .language-switch:hover { background:var(--card); }
     .nav-toggle, .nav-button { display:none; }
     main { padding:26px 0 60px; }
     .profile { display:flex; align-items:flex-start; gap:32px; padding:28px 0; border-bottom:1px solid var(--border); }
@@ -47,10 +49,11 @@
     .pub-venue { margin:0; font-size:14px; }
     footer { padding-top:22px; color:var(--muted); font-size:13px; text-align:center; }
     @media (max-width:859px) {
-      .header-grid { grid-template-columns:1fr auto; }
+      .header-grid { grid-template-columns:1fr auto auto; }
       .myhome { min-width:0; }
       .myhome a { display:block; overflow:hidden; padding:6px 0; text-overflow:ellipsis; white-space:nowrap; }
       .nav-button { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; background:#fff; border:1px solid var(--border); border-radius:12px; cursor:pointer; }
+      .language-switch { padding:8px 10px; }
       .nav-icon, .nav-icon::before, .nav-icon::after { width:18px; height:2px; background:var(--text); display:block; }
       .nav-icon { position:relative; }
       .nav-icon::before, .nav-icon::after { content:""; position:absolute; left:0; }
@@ -71,13 +74,14 @@
   <header class="site-header">
     <div class="container header-grid">
       <nav class="myhome" aria-label="Home"><a href="#top">Qingqi Zhang</a></nav>
+      <button class="language-switch" id="language-switch" type="button" aria-label="切换为中文">中文</button>
       <input class="nav-toggle" type="checkbox" id="nav-toggle">
-      <label class="nav-button" for="nav-toggle"><span class="nav-icon" aria-hidden="true"></span><span>Menu</span></label>
+      <label class="nav-button" for="nav-toggle"><span class="nav-icon" aria-hidden="true"></span><span data-i18n="menu">Menu</span></label>
       <nav class="nav" aria-label="Main navigation">
-        <a href="#research">Research</a>
-        <a href="#news">News</a>
-        <a href="#publications">Publications</a>
-        <a href="#contact">Contact</a>
+        <a href="#research" data-i18n="navResearch">Research</a>
+        <a href="#news" data-i18n="navNews">News</a>
+        <a href="#publications" data-i18n="navPublications">Publications</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
       </nav>
     </div>
   </header>
@@ -88,10 +92,10 @@
       <div class="profile-photo" aria-label="Qingqi Zhang profile placeholder">QZ</div>
       <div class="profile-info">
         <h1 id="name">Qingqi Zhang <span class="cn-name">(张庆琪)</span></h1>
-        <p class="profile-meta">Postdoctoral Researcher · AI for Healthcare</p>
-        <p class="profile-meta">Center of Medical AI · Hangzhou Institute of Medicine</p>
-        <p class="profile-meta">Chinese Academy of Sciences</p>
-        <p class="profile-meta">Email: <a class="text-link" href="mailto:your.email@example.com">your.email@example.com</a> <span aria-label="replace this email">(please replace)</span></p>
+        <p class="profile-meta" data-i18n="role">Postdoctoral Researcher · AI for Healthcare</p>
+        <p class="profile-meta" data-i18n="institution">Center of Medical AI · Hangzhou Institute of Medicine</p>
+        <p class="profile-meta" data-i18n="academy">Chinese Academy of Sciences</p>
+        <p class="profile-meta"><span data-i18n="emailLabel">Email</span>: <a class="text-link" href="mailto:your.email@example.com">your.email@example.com</a> <span data-i18n="replaceEmail" aria-label="replace this email">(please replace)</span></p>
         <div class="links">
           <a class="btn" href="https://github.com/zhangtsingtsi" target="_blank" rel="noopener noreferrer">GitHub</a>
           <a class="btn" href="#" title="Replace with your Google Scholar URL">Google Scholar</a>
@@ -101,43 +105,79 @@
     </section>
 
     <section class="section-block">
-      <p><strong>Short Bio:</strong> I am a postdoctoral researcher at the Center of Medical AI, Hangzhou Institute of Medicine, Chinese Academy of Sciences. My work explores reliable and interpretable artificial intelligence for healthcare, with a focus on human movement and rehabilitation. <em>Please replace this paragraph with your own biography.</em></p>
+      <p data-i18n-html="bio"><strong>Short Bio:</strong> I am a postdoctoral researcher at the Center of Medical AI, Hangzhou Institute of Medicine, Chinese Academy of Sciences. My work explores reliable and interpretable artificial intelligence for healthcare, with a focus on human movement and rehabilitation. <em>Please replace this paragraph with your own biography.</em></p>
     </section>
 
     <section id="research" class="section-block">
-      <h2 class="section-title">Research Interests</h2>
+      <h2 class="section-title" data-i18n="researchTitle">Research Interests</h2>
       <ul class="interest-list">
-        <li>AI for Healthcare</li>
-        <li>VR Rehabilitation</li>
-        <li>Human Motion Analysis</li>
-        <li>Explainable AI</li>
+        <li data-i18n="interest1">AI for Healthcare</li>
+        <li data-i18n="interest2">VR Rehabilitation</li>
+        <li data-i18n="interest3">Human Motion Analysis</li>
+        <li data-i18n="interest4">Explainable AI</li>
       </ul>
     </section>
 
     <section id="news" class="section-block">
-      <h2 class="section-title">What's New</h2>
+      <h2 class="section-title" data-i18n="newsTitle">What's New</h2>
       <ul class="news-list">
-        <li><span class="news-date">2026.07</span><span>Example: Our work on motion analysis has been accepted by <em>[Conference / Journal]</em>. Please replace with your news.</span></li>
-        <li><span class="news-date">2026.03</span><span>Example: I joined the Center of Medical AI as a postdoctoral researcher.</span></li>
-        <li><span class="news-date">2025.12</span><span>Example: Our team presented research on AI-assisted rehabilitation at <em>[Event]</em>.</span></li>
+        <li><span class="news-date">2026.07</span><span data-i18n-html="news1">Example: Our work on motion analysis has been accepted by <em>[Conference / Journal]</em>. Please replace with your news.</span></li>
+        <li><span class="news-date">2026.03</span><span data-i18n="news2">Example: I joined the Center of Medical AI as a postdoctoral researcher.</span></li>
+        <li><span class="news-date">2025.12</span><span data-i18n-html="news3">Example: Our team presented research on AI-assisted rehabilitation at <em>[Event]</em>.</span></li>
       </ul>
     </section>
 
     <section id="publications" class="section-block">
-      <h2 class="section-title">Selected Publications</h2>
+      <h2 class="section-title" data-i18n="publicationsTitle">Selected Publications</h2>
       <div class="selected-item">
-        <p class="pub-title"><a href="#">Example paper title: Explainable AI for Personalized Rehabilitation Assessment</a></p>
-        <p class="pub-meta"><strong>Qingqi Zhang</strong>, Co-author One, Co-author Two</p>
-        <p class="pub-venue"><em>Example Journal / Conference</em>, 2026 · <a class="text-link" href="#">Paper</a> · <a class="text-link" href="#">Code</a></p>
+        <p class="pub-title"><a href="#" data-i18n="paperTitle">Example paper title: Explainable AI for Personalized Rehabilitation Assessment</a></p>
+        <p class="pub-meta"><strong>Qingqi Zhang</strong>, <span data-i18n="authors">Co-author One, Co-author Two</span></p>
+        <p class="pub-venue"><em data-i18n="venue">Example Journal / Conference</em>, 2026 · <a class="text-link" href="#" data-i18n="paperLink">Paper</a> · <a class="text-link" href="#" data-i18n="codeLink">Code</a></p>
       </div>
     </section>
 
     <section id="contact" class="section-block">
-      <h2 class="section-title">Contact</h2>
-      <p>I welcome collaborations on AI for healthcare, rehabilitation, and human motion analysis. Please email me at <a class="text-link" href="mailto:your.email@example.com">your.email@example.com</a>.</p>
+      <h2 class="section-title" data-i18n="contactTitle">Contact</h2>
+      <p data-i18n-html="contact">I welcome collaborations on AI for healthcare, rehabilitation, and human motion analysis. Please email me at <a class="text-link" href="mailto:your.email@example.com">your.email@example.com</a>.</p>
     </section>
 
-    <footer>© 2026 Qingqi Zhang · Last updated July 2026</footer>
+    <footer data-i18n="footer">© 2026 Qingqi Zhang · Last updated July 2026</footer>
   </main>
+  <script>
+    const translations = {
+      en: {
+        menu: 'Menu', navResearch: 'Research', navNews: 'News', navPublications: 'Publications', navContact: 'Contact',
+        role: 'Postdoctoral Researcher · AI for Healthcare', institution: 'Center of Medical AI · Hangzhou Institute of Medicine', academy: 'Chinese Academy of Sciences', emailLabel: 'Email', replaceEmail: '(please replace)',
+        bio: '<strong>Short Bio:</strong> I am a postdoctoral researcher at the Center of Medical AI, Hangzhou Institute of Medicine, Chinese Academy of Sciences. My work explores reliable and interpretable artificial intelligence for healthcare, with a focus on human movement and rehabilitation. <em>Please replace this paragraph with your own biography.</em>',
+        researchTitle: 'Research Interests', interest1: 'AI for Healthcare', interest2: 'VR Rehabilitation', interest3: 'Human Motion Analysis', interest4: 'Explainable AI',
+        newsTitle: "What's New", news1: 'Example: Our work on motion analysis has been accepted by <em>[Conference / Journal]</em>. Please replace with your news.', news2: 'Example: I joined the Center of Medical AI as a postdoctoral researcher.', news3: 'Example: Our team presented research on AI-assisted rehabilitation at <em>[Event]</em>.',
+        publicationsTitle: 'Selected Publications', paperTitle: 'Example paper title: Explainable AI for Personalized Rehabilitation Assessment', authors: 'Co-author One, Co-author Two', venue: 'Example Journal / Conference', paperLink: 'Paper', codeLink: 'Code',
+        contactTitle: 'Contact', contact: 'I welcome collaborations on AI for healthcare, rehabilitation, and human motion analysis. Please email me at <a class="text-link" href="mailto:your.email@example.com">your.email@example.com</a>.', footer: '© 2026 Qingqi Zhang · Last updated July 2026'
+      },
+      zh: {
+        menu: '菜单', navResearch: '研究方向', navNews: '最新动态', navPublications: '论文发表', navContact: '联系方式',
+        role: '博士后研究员 · 医疗人工智能', institution: '医学人工智能中心 · 中国科学院杭州医学研究所', academy: '中国科学院', emailLabel: '邮箱', replaceEmail: '（请替换）',
+        bio: '<strong>个人简介：</strong>我目前在中国科学院杭州医学研究所医学人工智能中心从事博士后研究。我的研究聚焦于面向医疗健康的可靠、可解释人工智能，特别关注人体运动分析与康复。<em>请将本段替换为你的个人简介。</em>',
+        researchTitle: '研究方向', interest1: '医疗人工智能', interest2: '虚拟现实康复', interest3: '人体运动分析', interest4: '可解释人工智能',
+        newsTitle: '最新动态', news1: '示例：我们关于运动分析的工作被 <em>[会议 / 期刊]</em> 接收。请替换为你的最新动态。', news2: '示例：我加入中国科学院杭州医学研究所医学人工智能中心从事博士后研究。', news3: '示例：团队在 <em>[活动名称]</em> 分享了 AI 辅助康复相关研究。',
+        publicationsTitle: '代表性论文', paperTitle: '示例论文：用于个体化康复评估的可解释人工智能', authors: '合作者一，合作者二', venue: '示例期刊 / 会议', paperLink: '论文', codeLink: '代码',
+        contactTitle: '联系方式', contact: '欢迎就医疗人工智能、康复与人体运动分析开展合作。请通过邮箱 <a class="text-link" href="mailto:your.email@example.com">your.email@example.com</a> 联系我。', footer: '© 2026 Qingqi Zhang · 最后更新于 2026 年 7 月'
+      }
+    };
+    const languageButton = document.querySelector('#language-switch');
+    function setLanguage(language) {
+      const copy = translations[language];
+      document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+      document.querySelectorAll('[data-i18n]').forEach((element) => { element.textContent = copy[element.dataset.i18n]; });
+      document.querySelectorAll('[data-i18n-html]').forEach((element) => { element.innerHTML = copy[element.dataset.i18nHtml]; });
+      languageButton.textContent = language === 'zh' ? 'English' : '中文';
+      languageButton.setAttribute('aria-label', language === 'zh' ? 'Switch to English' : '切换为中文');
+      document.title = language === 'zh' ? 'Qingqi Zhang | 个人主页' : 'Qingqi Zhang | Personal Homepage';
+      localStorage.setItem('homepage-language', language);
+    }
+    const savedLanguage = localStorage.getItem('homepage-language');
+    setLanguage(savedLanguage === 'zh' ? 'zh' : 'en');
+    languageButton.addEventListener('click', () => setLanguage(document.documentElement.lang === 'zh-CN' ? 'en' : 'zh'));
+  </script>
 </body>
 </html>
